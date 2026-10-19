@@ -1,5 +1,8 @@
 <?php
 
+echo("<h1 style='color:green'> NAME: Shukri Mohamett Omar</h1>");
+echo("<h1 style='color:green '> ID: c1230238</h1>");
+
 /* =========================================================
    QUESTION 1
 ========================================================= */
@@ -265,162 +268,8 @@ $transcript = [
         ]
 
     ],
-
-
-    "Semester 3" => [
-
-        "subject1" => [
-            "CW1" => 10,
-            "MidTerm" => 25,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject2" => [
-            "CW1" => 8,
-            "MidTerm" => 24,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject3" => [
-            "CW1" => 9,
-            "MidTerm" => 25,
-            "CW2" => 10,
-            "Final" => 40
-        ]
-
-    ],
-
-
-    "Semester 4" => [
-
-        "subject1" => [
-            "CW1" => 9,
-            "MidTerm" => 27,
-            "CW2" => 10,
-            "Final" => 0
-        ],
-
-        "subject2" => [
-            "CW1" => 10,
-            "MidTerm" => 25,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject3" => [
-            "CW1" => 8,
-            "MidTerm" => 26,
-            "CW2" => 10,
-            "Final" => 40
-        ]
-
-    ],
-
-
-    "Semester 5" => [
-
-        "subject1" => [
-            "CW1" => 10,
-            "MidTerm" => 26,
-            "CW2" => 9,
-            "Final" => 40
-        ],
-
-        "subject2" => [
-            "CW1" => 9,
-            "MidTerm" => 27,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject3" => [
-            "CW1" => 10,
-            "MidTerm" => 4,
-            "CW2" => 10,
-            "Final" => 2
-        ]
-
-    ],
-
-
-    "Semester 6" => [
-
-        "subject1" => [
-            "CW1" => 9,
-            "MidTerm" => 26,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject2" => [
-            "CW1" => 10,
-            "MidTerm" => 25,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject3" => [
-            "CW1" => 9,
-            "MidTerm" => 24,
-            "CW2" => 10,
-            "Final" => 40
-        ]
-
-    ],
-
-
-    "Semester 7" => [
-
-        "subject1" => [
-            "CW1" => 10,
-            "MidTerm" => 26,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject2" => [
-            "CW1" => 9,
-            "MidTerm" => 25,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject3" => [
-            "CW1" => 10,
-            "MidTerm" => 25,
-            "CW2" => 10,
-            "Final" => 40
-        ]
-
-    ],
-
-
-    "Semester 8" => [
-
-        "subject1" => [
-            "CW1" => 9,
-            "MidTerm" => 26,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject2" => [
-            "CW1" => 10,
-            "MidTerm" => 26,
-            "CW2" => 10,
-            "Final" => 40
-        ],
-
-        "subject3" => [
-            "CW1" => 9,
-            "MidTerm" => 25,
-            "CW2" => 10,
-            "Final" => 40
-        ]
-
-    ]
+ 
+    
 
 ];
 

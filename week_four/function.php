@@ -4,9 +4,9 @@ function WelcomeMsg($name) {
     echo "Hi $name, Welcome to the Faculty of Computer and IT";
 }
 
-WelcomeMsg("Mohamed");
+WelcomeMsg("shukri");
 echo "<br>";
-WelcomeMsg("Abdi");
+WelcomeMsg("Hafsa");
 echo "<br>";
 
 function factorial($n) {

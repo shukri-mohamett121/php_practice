@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -216,7 +217,7 @@ $firstError = !empty($errors) ? array_key_first($errors) : '';
 
     <style>
         body {
-            background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+            background: linear-gradient(135deg, #ede9fe, #f5f3ff);
             font-family: Arial, sans-serif;
             padding: 30px 0;
         }
@@ -226,12 +227,12 @@ $firstError = !empty($errors) ? array_key_first($errors) : '';
             margin: auto;
             background: #ffffff;
             border-radius: 18px;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
+            box-shadow: 0 8px 28px rgba(49, 46, 129, 0.12);
             overflow: hidden;
         }
 
         .header {
-            background: #1e3a8a;
+            background: linear-gradient(135deg, #312e81, #7c3aed);
             color: white;
             text-align: center;
             padding: 25px 15px;
@@ -247,19 +248,19 @@ $firstError = !empty($errors) ? array_key_first($errors) : '';
         }
 
         .section-title {
-            background: #e0f2fe;
-            color: #1e3a8a;
+            background: #ede9fe;
+            color: #312e81;
             font-size: 18px;
             font-weight: bold;
             padding: 12px 15px;
-            border-left: 5px solid #06b6d4;
+            border-left: 5px solid #7c3aed;
             border-radius: 6px;
             margin: 25px 0 18px;
         }
 
         .form-label {
             font-weight: 600;
-            color: #334155;
+            color: #3730a3;
         }
 
         .form-control,
@@ -270,12 +271,12 @@ $firstError = !empty($errors) ? array_key_first($errors) : '';
 
         .form-control:focus,
         .form-select:focus {
-            border-color: #06b6d4;
-            box-shadow: 0 0 0 0.2rem rgba(6, 182, 212, 0.15);
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.15);
         }
 
         .btn-register {
-            background: #1e3a8a;
+            background: #4338ca;
             color: white;
             border: none;
             padding: 12px 30px;
@@ -284,7 +285,7 @@ $firstError = !empty($errors) ? array_key_first($errors) : '';
         }
 
         .btn-register:hover {
-            background: #06b6d4;
+            background: #7c3aed;
             color: #ffffff;
         }
 
@@ -294,7 +295,7 @@ $firstError = !empty($errors) ? array_key_first($errors) : '';
 
         .gender-box {
             padding: 10px 12px;
-            border: 1px solid #dee2e6;
+            border: 1px solid #ddd6fe;
             border-radius: 8px;
         }
 

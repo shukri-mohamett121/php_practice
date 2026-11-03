@@ -2,54 +2,48 @@
 <?php
 session_start();
 
-// Check whether student data exists
-if (
-    empty($_SESSION['student_data']) ||
-    !is_array($_SESSION['student_data'])
-) {
-    header('Location: register.php');
+// Check if student data exists
+if (!isset($_SESSION['student_data']) || !is_array($_SESSION['student_data'])) {
+    header("Location: register.php");
     exit;
 }
 
+// Get student data
 $student = $_SESSION['student_data'];
 
-// Secure output to prevent HTML injection
+// Escape output for security
 function h($value) {
-    return htmlspecialchars(
-        (string) $value,
-        ENT_QUOTES,
-        'UTF-8'
-    );
+    return htmlspecialchars((string)($value ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
-// Information sections
+// Student information sections
 $sections = [
-    'Personal Information' => [
-        'Student Name' => 'fullname',
-        'Place of Birth (POB)' => 'pob',
-        'Date of Birth (DOB)' => 'dob',
-        'Address' => 'address',
-        'Gender' => 'gender',
-        'Telephone' => 'telephone',
-        'Email' => 'email'
+    "Personal Information" => [
+        "fullname" => "Full Name",
+        "pob" => "Place of Birth",
+        "dob" => "Date of Birth",
+        "address" => "Address",
+        "gender" => "Gender",
+        "telephone" => "Telephone",
+        "email" => "Email"
     ],
 
-    'Parent Information' => [
-        'Parent Name' => 'parent_name',
-        'Parent Telephone' => 'parent_telephone',
-        'Relationship' => 'relationship'
+    "Parent Information" => [
+        "parent_name" => "Parent Name",
+        "parent_telephone" => "Parent Telephone",
+        "relationship" => "Relationship"
     ],
 
-    'Academic Information' => [
-        'Student ID' => 'student_id',
-        'Faculty' => 'faculty',
-        'Department' => 'department',
-        'Class' => 'class',
-        'Registration Date' => 'registration_date'
+    "Academic Information" => [
+        "student_id" => "Student ID",
+        "faculty" => "Faculty",
+        "department" => "Department",
+        "class" => "Class",
+        "registration_date" => "Registration Date"
     ]
 ];
 
-// Check whether uploaded image exists
+// Check student image
 $imagePath = '';
 
 if (!empty($student['image'])) {
@@ -63,32 +57,34 @@ if (!empty($student['image'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Result</title>
 
-    <title>Registration Result | JUST</title>
-
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+
         body {
-            background: #f2f6fc;
+            background: #f5f3ff;
             font-family: Arial, sans-serif;
         }
 
         .page-header {
             background: linear-gradient(
                 135deg,
-                #1e3a8a,
-                #06b6d4
+                #312e81,
+                #7c3aed
             );
             color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
         }
 
         .result-card {
@@ -98,8 +94,10 @@ if (!empty($student['image'])) {
         }
 
         .section-heading {
-            color: #1e3a8a;
+            color: #4338ca;
             font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 15px;
         }
 
         .student-photo {
@@ -107,26 +105,33 @@ if (!empty($student['image'])) {
             height: 145px;
             object-fit: cover;
             border-radius: 14px;
-            border: 4px solid #e9eef6;
+            border: 4px solid #ede9fe;
         }
 
         .table th {
             width: 38%;
-            background: #eaf2ff;
-            color: #1e3a8a;
+            background: #ede9fe;
+            color: #312e81;
+        }
+
+        .table td,
+        .table th {
+            padding: 12px;
+            vertical-align: middle;
         }
 
         .btn-primary {
-            background: #1e3a8a;
-            border-color: #1e3a8a;
+            background: #4338ca;
+            border-color: #4338ca;
         }
 
         .btn-primary:hover {
-            background: #06b6d4;
-            border-color: #06b6d4;
+            background: #7c3aed;
+            border-color: #7c3aed;
         }
 
         @media print {
+
             body {
                 background: white;
             }
@@ -145,161 +150,187 @@ if (!empty($student['image'])) {
                 color: black !important;
                 box-shadow: none !important;
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
-<header class="page-header py-4 mb-4 shadow-sm">
-    <div class="container">
-       
+<div class="container py-4">
 
-        <h1 class="h3 mb-1">
-            Student Registration Result
-        </h1>
+    <!-- Page Header -->
+    <div class="page-header text-center shadow">
+
+        <h2>Student Registration Result</h2>
 
         <p class="mb-0">
-            The submitted student information is shown below.
+            Your registration information has been submitted successfully.
         </p>
-    </div>
-</header>
 
-<main class="container pb-5">
-
-    <!-- Student Summary -->
-    <div class="card result-card shadow-sm mb-4">
-        <div class="card-body p-4 d-flex flex-column flex-md-row align-items-center gap-4">
-
-            <?php if ($imagePath !== ''): ?>
-                <img
-                    class="student-photo"
-                    src="<?= h($imagePath) ?>"
-                    alt="Student photo"
-                >
-            <?php endif; ?>
-
-            <div class="text-center text-md-start">
-                <span class="badge text-bg-success mb-2">
-                    Registration Submitted
-                </span>
-
-                <h2 class="h4 mb-2">
-                    <?= h($student['fullname'] ?? '') ?>
-                </h2>
-
-                <p class="text-secondary mb-1">
-                    <strong>Student ID:</strong>
-                    <?= h($student['student_id'] ?? '') ?>
-                </p>
-
-                <p class="text-secondary mb-0">
-                    <?= h($student['faculty'] ?? '') ?>
-                    &middot;
-                    <?= h($student['department'] ?? '') ?>
-                </p>
-            </div>
-
-        </div>
     </div>
 
-    <!-- Display Information Sections -->
-    <?php foreach ($sections as $sectionTitle => $fields): ?>
 
-        <div class="card result-card shadow-sm mb-4">
-            <div class="card-body p-4">
+    <!-- Result Card -->
+    <div class="card result-card shadow">
 
-                <h2 class="h5 section-heading mb-3">
-                    <?= h($sectionTitle) ?>
-                </h2>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped align-middle mb-0">
-                        <tbody>
-
-                        <?php foreach ($fields as $label => $key): ?>
-                            <tr>
-                                <th scope="row">
-                                    <?= h($label) ?>
-                                </th>
-
-                                <td>
-                                    <?= h($student[$key] ?? '') ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-
-    <?php endforeach; ?>
-
-    <!-- Student Image -->
-    <div class="card result-card shadow-sm mb-4">
         <div class="card-body p-4">
 
-            <h2 class="h5 section-heading mb-3">
-                Student Image
-            </h2>
 
-            <?php if ($imagePath !== ''): ?>
+            <!-- Student Summary: Image and Name -->
+            <div class="d-flex align-items-center justify-content-center gap-4 flex-wrap mb-4">
 
-                <div class="mb-3">
+                <!-- Student Image at Top -->
+                <?php if ($imagePath !== ''): ?>
+
                     <img
                         src="<?= h($imagePath) ?>"
-                        alt="Uploaded student image"
+                        alt="Student Image"
                         class="student-photo"
                     >
+
+                <?php endif; ?>
+
+
+                <!-- Student Name and Details -->
+                <div class="text-center">
+
+                    <span class="badge bg-success mb-3">
+                        Registration Successful
+                    </span>
+
+                    <h3 class="fw-bold">
+                        <?= h($student['fullname'] ?? '') ?>
+                    </h3>
+
+                    <p class="text-muted mb-1">
+
+                        Student ID:
+
+                        <?= h($student['student_id'] ?? '') ?>
+
+                    </p>
+
+                    <p class="text-muted">
+
+                        <?= h($student['faculty'] ?? '') ?>
+
+                        -
+
+                        <?= h($student['department'] ?? '') ?>
+
+                    </p>
+
                 </div>
 
-                <a
-                    href="<?= h($imagePath) ?>"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View uploaded image in full size
+            </div>
+
+
+            <hr>
+
+
+            <!-- Student Information Sections -->
+            <?php foreach ($sections as $sectionTitle => $fields): ?>
+
+                <h5 class="section-heading">
+
+                    <?= h($sectionTitle) ?>
+
+                </h5>
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <tbody>
+
+                            <?php foreach ($fields as $key => $label): ?>
+
+                                <tr>
+
+                                    <th>
+                                        <?= h($label) ?>
+                                    </th>
+
+                                    <td>
+                                        <?= h($student[$key] ?? '') ?>
+                                    </td>
+
+                                </tr>
+
+                            <?php endforeach; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            <?php endforeach; ?>
+
+
+            <!-- Student Image at Bottom -->
+            <h5 class="section-heading">
+                Student Image
+            </h5>
+
+            <div class="text-center mb-4">
+
+                <?php if ($imagePath !== ''): ?>
+
+                    <img
+                        src="<?= h($imagePath) ?>"
+                        alt="Student Image"
+                        class="student-photo"
+                    >
+
+                <?php else: ?>
+
+                    <p class="text-danger">
+                        Student image is not available.
+                    </p>
+
+                <?php endif; ?>
+
+            </div>
+
+
+            <!-- Action Buttons -->
+            <div class="text-center mt-4 no-print">
+
+                <a href="register.php" class="btn btn-primary px-4">
+
+                    Back to Registration
+
                 </a>
 
-            <?php else: ?>
 
-                <p class="text-secondary mb-0">
-                    No image is available.
-                </p>
+                <button
+                    type="button"
+                    onclick="window.print()"
+                    class="btn btn-success px-4 ms-2"
+                >
 
-            <?php endif; ?>
+                    Print Result
+
+                </button>
+
+            </div>
+
 
         </div>
-    </div>
-
-    <!-- Buttons -->
-    <div class="no-print d-flex flex-column flex-sm-row gap-2 justify-content-between">
-
-        <a
-            href="register.php"
-            class="btn btn-outline-primary"
-        >
-            Back to Registration Form
-        </a>
-
-        <button
-            type="button"
-            class="btn btn-primary"
-            onclick="window.print()"
-        >
-            Print Result
-        </button>
 
     </div>
 
-    <p class="text-center text-secondary small mt-4">
-        PHP &amp; MySQL &middot; Chapter 4 Forms Assignment
-    </p>
+</div>
 
-</main>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
